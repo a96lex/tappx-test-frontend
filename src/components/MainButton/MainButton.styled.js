@@ -3,6 +3,7 @@ import { Theme } from "../../utils";
 
 export const StyledButton = styled.button`
   cursor: pointer;
+  min-width: fit-content;
   border: none;
   border-radius: 5px;
   color: ${Theme.background};

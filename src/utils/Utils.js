@@ -1,1 +1,1 @@
-export const widthTreshold = "800px";
+export const widthTreshold = "900px";
