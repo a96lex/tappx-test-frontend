@@ -12,7 +12,9 @@ export const StyledButton = styled.button`
   padding: ${(props) => (props.secondary ? "8px 15px" : "12px 30px")};
   transition: all 0.2s ease-in-out;
   &:hover {
-    margin-bottom: 5px;
-    opacity: 0.6;
+    ${(props) =>
+      props.secondary
+        ? `filter: brightness(150%)`
+        : `background-color: ${Theme.primaryLight}`};
   }
 `;
