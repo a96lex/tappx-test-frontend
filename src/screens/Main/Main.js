@@ -4,11 +4,13 @@ import { AppLayout, MainCard } from "./Main.styled";
 
 export function Main() {
   return (
-    <AppLayout>
+    <>
       <Header />
-      <MainCard>
-        <BundleManagement />
-      </MainCard>
-    </AppLayout>
+      <AppLayout>
+        <MainCard>
+          <BundleManagement />
+        </MainCard>
+      </AppLayout>
+    </>
   );
 }
