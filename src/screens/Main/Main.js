@@ -1,12 +1,14 @@
 import React from "react";
-import { Header } from "../../components";
-import { AppLayout } from "./Main.styled";
+import { BundleManagement, Header } from "../../components";
+import { AppLayout, MainCard } from "./Main.styled";
 
 export function Main() {
   return (
     <AppLayout>
       <Header />
-      <div>Bundle manager</div>
+      <MainCard>
+        <BundleManagement />
+      </MainCard>
     </AppLayout>
   );
 }
