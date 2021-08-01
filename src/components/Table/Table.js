@@ -11,18 +11,14 @@ export function Table() {
         <div>bundle</div>
         <div>company</div>
       </DataHeader>
-      {helperData
-        .concat(helperData)
-        .concat(helperData)
-        .concat(helperData)
-        .map((b) => (
-          <DataRow>
-            <div>{b.name}</div>
-            <div>{b.category}</div>
-            <div>{b.bundle}</div>
-            <div>{b.company}</div>
-          </DataRow>
-        ))}
+      {helperData.map((b) => (
+        <DataRow>
+          <div>{b.name}</div>
+          <div>{b.category}</div>
+          <div>{b.bundle}</div>
+          <div>{b.company}</div>
+        </DataRow>
+      ))}
     </>
   );
 }
