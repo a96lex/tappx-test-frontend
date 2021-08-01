@@ -9,3 +9,13 @@ export const AppLayout = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const MainCard = styled.div`
+  background: ${Theme.backgroundLight};
+  box-shadow: ${Theme.shadow};
+  border-radius: 5px;
+  margin: 29px;
+  padding: 24px;
+  width: 85%;
+  max-width: 1200px;
+`;
