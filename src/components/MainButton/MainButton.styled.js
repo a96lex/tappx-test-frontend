@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   min-width: fit-content;
   border: none;
   border-radius: 5px;
-  color: ${Theme.background};
+  color: ${Theme.backgroundLight};
   background-color: ${(props) =>
     props.secondary ? Theme.secondary : Theme.primary};
   padding: ${(props) => (props.secondary ? "8px 15px" : "12px 30px")};

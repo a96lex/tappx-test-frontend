@@ -3,11 +3,11 @@ import { Theme, widthTreshold } from "../../utils";
 
 export const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 80%;
-  margin-left: 10%;
+  width: 100%;
   height: 70px;
+  background-color: ${Theme.backgroundLight};
 `;
 
 export const StyledLogo = styled.img`
@@ -24,13 +24,13 @@ export const LinkItem = styled.div`
     color: ${Theme.body};
   }
   @media (max-width: ${widthTreshold}) {
-    color: ${Theme.background} !important;
+    color: ${Theme.backgroundLight} !important;
   }
 `;
 
 export const MenuContainer = styled.div`
-  transition: all 0.5s ease-in-out;
   @media (max-width: ${widthTreshold}) {
+    transition: all 0.3s ease-in-out;
     background-color: ${Theme.body};
     height: ${(props) => (props.show ? `100vh` : `0px`)};
     opacity: ${(props) => (props.show ? `1` : `0`)};
