@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Theme } from "../../utils";
+import { Theme, widthTreshold } from "../../utils";
 
 export const ModalBg = styled.div`
   position: fixed;
@@ -15,9 +15,12 @@ export const ModalBg = styled.div`
 `;
 
 export const ModalLayoutHelper = styled.div`
-  width: 600px;
   position: relative;
   height: fit-content;
+  @media (max-width: ${widthTreshold}) {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const ModalContainer = styled.div`
@@ -26,9 +29,26 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: #ffffff;
+  background: ${Theme.backgroundLight};
   border-radius: 8px;
   box-shadow: ${Theme.shadow}
-  max-height: 80vh;
   overflow-y: auto;
+  height: 100%;width: 100%
+
+`;
+
+export const ModalToggle = styled.button`
+  position: absolute;
+  top: -70px;
+  right: -80px;
+  @media (max-width: ${widthTreshold}) {
+    top: 20px;
+    right: 20px;
+  }
+  color: ${Theme.primary};
+  font-size: 40px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
 `;

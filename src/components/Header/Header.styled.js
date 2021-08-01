@@ -9,6 +9,7 @@ export const HeaderContainer = styled.div`
   height: 70px;
   background-color: ${Theme.backgroundLight};
   box-shadow: ${Theme.shadow};
+  padding: 15px 0px;
 `;
 
 export const StyledLogo = styled.img`
