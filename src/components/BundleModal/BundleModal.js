@@ -16,13 +16,8 @@ export function BundleModal() {
   const { unSelectBundle, createBundle, deleteBundle } = useBundleActions();
   const { selectedBundle, isCreation } = useBundleState();
 
-  useEffect(() => console.log({ setName, name }), [name, setName]);
-
   useEffect(() => {
-    console.log({ selectedBundle });
     if (selectedBundle) {
-      console.log("here");
-      console.log(selectedBundle.name);
       setName(selectedBundle.name);
       setEmail(selectedBundle.email);
       setBundle(selectedBundle.bundle);
@@ -32,8 +27,13 @@ export function BundleModal() {
     }
   }, [selectedBundle]);
 
+  const handleClose = () => {
+    setShowDelete(false);
+    unSelectBundle();
+  };
+
   return (
-    <Modal close={unSelectBundle} show={selectedBundle}>
+    <Modal close={handleClose} show={selectedBundle}>
       <h2>{isCreation ? "Introduce bundle data" : "Bundle details"}</h2>
       <BundleInput label="Name:" value={name} setValue={setName} />
       <BundleInput label="Email:" value={email} setValue={setEmail} />
@@ -51,7 +51,7 @@ export function BundleModal() {
       >
         {isCreation ? "CREATE" : showDelete ? "CANCEL" : "DELETE"}
       </MainButton>
-      {showDelete && (
+      {!isCreation && showDelete && (
         <MainButton onClick={() => deleteBundle()}>
           CONFIRM ELIMINATION
         </MainButton>
