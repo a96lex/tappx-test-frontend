@@ -6,13 +6,13 @@ import {
   ModalToggle,
 } from "./Modal.styled";
 
-export const Modal = ({ show, children, setShow }) => {
+export const Modal = ({ show, children, close }) => {
   if (!show) return null;
   return (
     <ModalBg>
       <ModalLayoutHelper>
         <ModalContainer>
-          <ModalToggle onClick={() => setShow(false)}>X</ModalToggle>
+          <ModalToggle onClick={() => close()}>X</ModalToggle>
           {children}
         </ModalContainer>
       </ModalLayoutHelper>

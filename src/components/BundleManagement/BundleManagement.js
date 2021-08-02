@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { MainButton } from "../MainButton";
-import { Table, Modal } from "../";
+import { Table } from "../";
 import { Title, Header } from "./BundleManagement.styled";
+import { useBundleActions } from "../../context";
+import { BundleModal } from "../BundleModal";
 
 export function BundleManagement() {
-  const [showModal, setShowModal] = useState(false);
+  const { selectBundle } = useBundleActions();
+
   return (
     <>
       <Header>
-        <Modal show={showModal} setShow={setShowModal}></Modal>
+        <BundleModal />
         <Title>Android Bundle Manager</Title>
         <MainButton
           style={{ alignSelf: "center" }}
-          onClick={() => setShowModal(!showModal)}
+          onClick={() => selectBundle()}
         >
           CREATE
         </MainButton>
