@@ -13,8 +13,8 @@ export function Table() {
         <div>bundle</div>
         <div>company</div>
       </DataHeader>
-      {helperData.map((b) => (
-        <DataRow onClick={() => selectBundle(b)}>
+      {helperData.map((b, i) => (
+        <DataRow onClick={() => selectBundle(b)} key={i}>
           <div>{b.name}</div>
           <div>{b.category}</div>
           <div>{b.bundle}</div>
