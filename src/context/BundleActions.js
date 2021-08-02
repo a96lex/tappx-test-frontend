@@ -66,7 +66,7 @@ function unSelectBundle(dispatch) {
   };
 }
 
-export const Actions = {
+export const BundleActions = {
   getBundles,
   createBundle,
   deleteBundle,
