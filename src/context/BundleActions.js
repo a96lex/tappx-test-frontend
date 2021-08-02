@@ -56,7 +56,16 @@ function deleteBundle(dispatch) {
 }
 
 function selectBundle(dispatch) {
-  return async function selectBundleDispatch(bundle) {
+  return async function selectBundleDispatch(
+    bundle = {
+      name: "",
+      bundle: "",
+      company: "",
+      email: "",
+      active: true,
+      category: "",
+    }
+  ) {
     dispatch({ type: SELECT_BUNDLE, payload: bundle });
   };
 }
