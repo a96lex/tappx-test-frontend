@@ -10,7 +10,12 @@ export function BundleManagement() {
       <Header>
         <Modal show={showModal} setShow={setShowModal}></Modal>
         <Title>Android Bundle Manager</Title>
-        <MainButton onClick={() => setShowModal(!showModal)}>CREATE</MainButton>
+        <MainButton
+          style={{ alignSelf: "center" }}
+          onClick={() => setShowModal(!showModal)}
+        >
+          CREATE
+        </MainButton>
       </Header>
       <Table />
     </>
