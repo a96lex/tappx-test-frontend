@@ -13,12 +13,13 @@ import {
   DELETE_BUNDLE_FAIL,
   SELECT_BUNDLE,
   UNSELECT_BUNDLE,
-} from "./types";
+} from "./Types";
 
 const BundleStateContext = React.createContext();
 const BundleDispatchContext = React.createContext();
 
 function bundleReducer(state, action) {
+  console.log({ action });
   switch (action.type) {
     case GET_ALL_BUNDLES_START:
       return { ...state, getBundleLoading: true };
@@ -51,7 +52,11 @@ function bundleReducer(state, action) {
         bundleError: action.payload,
       };
     case SELECT_BUNDLE:
-      return { ...state, selectedBundle: action.payload };
+      return {
+        ...state,
+        selectedBundle: action.bundle,
+        isCreation: action.isCreation,
+      };
     case UNSELECT_BUNDLE:
       return { ...state, selectedBundle: null };
     default:
@@ -65,6 +70,7 @@ const INITIAL_STATE = {
   deleteBundleLoading: false,
   bundleList: null,
   selectedBundle: null,
+  isCreation: false,
   bundleError: null,
 };
 

@@ -11,7 +11,7 @@ import {
   DELETE_BUNDLE_FAIL,
   SELECT_BUNDLE,
   UNSELECT_BUNDLE,
-} from "./types";
+} from "./Types";
 
 const endpoint = "https://localhost:8080/bundles";
 
@@ -56,17 +56,20 @@ function deleteBundle(dispatch) {
 }
 
 function selectBundle(dispatch) {
-  return async function selectBundleDispatch(
-    bundle = {
-      name: "",
-      bundle: "",
-      company: "",
-      email: "",
-      active: true,
-      category: "",
+  return async function selectBundleDispatch(bundle = null) {
+    let isCreation = false;
+    if (!bundle) {
+      bundle = {
+        name: "",
+        bundle: "",
+        company: "",
+        email: "",
+        active: true,
+        category: "",
+      };
+      isCreation = true;
     }
-  ) {
-    dispatch({ type: SELECT_BUNDLE, payload: bundle });
+    dispatch({ type: SELECT_BUNDLE, bundle, isCreation });
   };
 }
 function unSelectBundle(dispatch) {
