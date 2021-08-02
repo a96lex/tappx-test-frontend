@@ -10,6 +10,8 @@ export const DataHeader = styled.div`
   div {
     width: ${(props) => (props.columns ? `${100 / props.columns}%` : "25%")};
     padding: 8px;
+    font-weight: bold;
+    text-transform: capitalize;
   }
 `;
 

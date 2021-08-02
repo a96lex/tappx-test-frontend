@@ -1,5 +1,5 @@
 import React from "react";
-import { BundleManagement, Header } from "../../components";
+import { BundleManagement, Footer, Header } from "../../components";
 import { AppLayout, MainCard } from "./Main.styled";
 
 export function Main() {
@@ -11,6 +11,7 @@ export function Main() {
           <BundleManagement />
         </MainCard>
       </AppLayout>
+      <Footer />
     </>
   );
 }
