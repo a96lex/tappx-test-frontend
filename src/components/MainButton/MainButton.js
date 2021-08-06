@@ -6,9 +6,15 @@ export function MainButton({
   secondary = false,
   onClick,
   style = {},
+  disabled = false,
 }) {
   return (
-    <StyledButton secondary={secondary} onClick={onClick} style={style}>
+    <StyledButton
+      secondary={secondary}
+      onClick={onClick}
+      style={style}
+      disabled={disabled}
+    >
       {children}
     </StyledButton>
   );
