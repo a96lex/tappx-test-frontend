@@ -151,6 +151,11 @@ export function BundleModal() {
           options={categoryOptions}
         />
       </div>
+      <MainButton
+        onClick={() => (isCreation ? handleCreate() : handleUpdate())}
+      >
+        {isCreation ? "CREATE" : "UPDATE"}
+      </MainButton>
       <div
         style={{
           display: "flex",
@@ -159,11 +164,6 @@ export function BundleModal() {
           marginTop: 20,
         }}
       >
-        <MainButton
-          onClick={() => (isCreation ? handleCreate() : handleUpdate())}
-        >
-          {isCreation ? "CREATE" : "UPDATE"}
-        </MainButton>
         {!isCreation && (
           <>
             <MainButton secondary onClick={() => setShowDelete(!showDelete)}>
