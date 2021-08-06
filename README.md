@@ -37,12 +37,16 @@ The folder strcuture is simple. On src, besides App and index files, we see seve
 The site is deployed on Netlify.
 [Click here to visit](https://tappx-test-alex.netlify.app/)
 
-**Warning** no backend is served here
+**Warning** no backend is served here.
+
+For it to have a database connection, the backend needs to be running on port 8000. See [backend local usage](https://github.com/a96lex/tappx-test-backend)
 
 # To test in local
 
 - clone the repository
 - run `yarn`
 - run `yarn start`
+
+**Warning** no backend is served here.
 
 For it to have a database connection, the backend needs to be running on port 8000. See [backend local usage](https://github.com/a96lex/tappx-test-backend)
