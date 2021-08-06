@@ -33,8 +33,6 @@ function getBundles(dispatch) {
 
 function createBundle(dispatch) {
   return async function createBundleDispatch(bundle) {
-    console.log("here");
-    console.log({ bundle });
     dispatch({ type: CREATE_BUNDLE_START });
     try {
       await axios.post(`${endpoint}`, bundle, {

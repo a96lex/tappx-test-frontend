@@ -5,7 +5,6 @@ import { DataHeader, DataRow } from "./Table.styled";
 export function Table() {
   const { selectBundle } = useBundleActions();
   const { bundleList, getBundleLoading } = useBundleState();
-
   return (
     <>
       <DataHeader>

@@ -22,7 +22,6 @@ const BundleStateContext = React.createContext();
 const BundleDispatchContext = React.createContext();
 
 function bundleReducer(state, action) {
-  console.log(action.type);
   switch (action.type) {
     case GET_ALL_BUNDLES_START:
       return { ...state, getBundleLoading: true };
