@@ -3,22 +3,23 @@ import { useBundleActions, useBundleState } from "../../context";
 import { bundleRegex, emailRegex } from "../../utils";
 import { MainButton } from "../MainButton";
 import { Modal } from "../Modal";
+import { BundleInputText, BundleInputCheckbox, BundleInputDropdown } from "..";
 
 const categoryOptions = ["tool", "music", "game", "social"];
 
 export function BundleModal() {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [bundle, setBundle] = useState("");
-  // const [company, setCompany] = useState("");
-  // const [active, setActive] = useState(0);
-  // const [category, setCategory] = useState(categoryOptions[0]);
-  const [name, setName] = useState("alex");
-  const [email, setEmail] = useState("alex@loves.cris");
-  const [bundle, setBundle] = useState("alex.loves.cris");
-  const [company, setCompany] = useState("alex");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [bundle, setBundle] = useState("");
+  const [company, setCompany] = useState("");
   const [active, setActive] = useState(0);
   const [category, setCategory] = useState(categoryOptions[0]);
+  // const [name, setName] = useState("alex");
+  // const [email, setEmail] = useState("alex@loves.cris");
+  // const [bundle, setBundle] = useState("alex.loves.cris");
+  // const [company, setCompany] = useState("alex");
+  // const [active, setActive] = useState(0);
+  // const [category, setCategory] = useState(categoryOptions[0]);
 
   const [nameError, setNameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
@@ -30,9 +31,13 @@ export function BundleModal() {
   const { unSelectBundle, createBundle, deleteBundle } = useBundleActions();
   const { selectedBundle, isCreation } = useBundleState();
 
+  const handleBundleDelete = () => {
+    deleteBundle(selectedBundle.id);
+    setShowDelete(false);
+  };
+
   useEffect(() => {
     if (selectedBundle && !isCreation) {
-      console.log({ isCreation });
       setName(selectedBundle.name);
       setEmail(selectedBundle.email);
       setBundle(selectedBundle.bundle);
@@ -43,8 +48,8 @@ export function BundleModal() {
   }, [selectedBundle]);
 
   const handleClose = () => {
-    setShowDelete(false);
     unSelectBundle();
+    setShowDelete(false);
   };
 
   const checkErrors = () => {
@@ -77,7 +82,6 @@ export function BundleModal() {
     const error = checkErrors();
     console.log({ error, nameError });
     if (!checkErrors()) {
-      console.log("no errores");
       createBundle({
         name,
         email,
@@ -86,6 +90,12 @@ export function BundleModal() {
         active,
         category,
       });
+      setName("");
+      setEmail("");
+      setBundle("");
+      setCompany("");
+      setActive(0);
+      setCategory(categoryOptions[0]);
     }
   };
 
@@ -95,6 +105,7 @@ export function BundleModal() {
       <BundleInputText
         label="Name:"
         value={name}
+        placeholder="Enter your name"
         setValue={setName}
         error={nameError}
         setError={setNameError}
@@ -102,6 +113,7 @@ export function BundleModal() {
       <BundleInputText
         label="Email:"
         value={email}
+        placeholder="Enter your email"
         setValue={setEmail}
         error={emailError}
         setError={setEmailError}
@@ -109,6 +121,7 @@ export function BundleModal() {
       <BundleInputText
         label="Bundle:"
         value={bundle}
+        placeholder="Enter your bundle"
         setValue={setBundle}
         error={bundleError}
         setError={setBundleError}
@@ -116,91 +129,59 @@ export function BundleModal() {
       <BundleInputText
         label="Company:"
         value={company}
+        placeholder="Enter your company"
         setValue={setCompany}
         error={companyError}
         setError={setCompanyError}
       />
-      <BundleInputCheckbox
-        label="Active:"
-        value={active}
-        setValue={setActive}
-      />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <BundleInputCheckbox
+          label="Active:"
+          value={active}
+          setValue={setActive}
+        />
 
-      <BundleInputDropdown
-        label="Category:"
-        value={category}
-        setValue={setCategory}
-        options={categoryOptions}
-      />
-      <MainButton
-        secondary={!isCreation}
-        onClick={() =>
-          isCreation ? handleCreate() : setShowDelete(!showDelete)
-        }
+        <BundleInputDropdown
+          label="Category:"
+          value={category}
+          setValue={setCategory}
+          options={categoryOptions}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: 20,
+        }}
       >
-        {isCreation ? "CREATE" : showDelete ? "CANCEL" : "DELETE"}
-      </MainButton>
-      {!isCreation && showDelete && (
-        <MainButton onClick={() => deleteBundle()}>
+        <MainButton
+          secondary={!isCreation}
+          onClick={() =>
+            isCreation ? handleCreate() : setShowDelete(!showDelete)
+          }
+        >
+          {isCreation ? "CREATE" : showDelete ? "CANCEL" : "DELETE"}
+        </MainButton>
+        <MainButton
+          onClick={() => handleBundleDelete()}
+          disabled={!showDelete}
+          style={
+            showDelete
+              ? { minWidth: 0, marginLeft: 10 }
+              : {
+                  width: 0,
+                  minWidth: 0,
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  whiteSpace: "nowrap",
+                }
+          }
+        >
           CONFIRM ELIMINATION
         </MainButton>
-      )}
-    </Modal>
-  );
-}
-
-function BundleInputText({ label, value, setValue, error = "", setError }) {
-  return (
-    <>
-      <div>
-        {label} <span style={{ color: "red" }}>{error}</span>
       </div>
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-          setError && setError(null);
-        }}
-      />
-    </>
-  );
-}
-
-function BundleInputCheckbox({ label, value, setValue }) {
-  return (
-    <>
-      <div>{label}</div>
-      <input
-        type="checkbox"
-        value={value}
-        onChange={() => {
-          setValue(Math.abs(value - 1));
-        }}
-      />
-    </>
-  );
-}
-
-function BundleInputDropdown({ label, value, setValue, options = [] }) {
-  return (
-    <>
-      <div>{label}</div>
-      <select
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        style={{ textTransform: "capitalize" }}
-      >
-        {options.map((option, index) => (
-          <option
-            name={option}
-            key={index}
-            style={{ textTransform: "capitalize" }}
-          >
-            {option}
-          </option>
-        ))}
-      </select>
-    </>
+    </Modal>
   );
 }
