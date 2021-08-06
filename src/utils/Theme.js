@@ -8,7 +8,7 @@ export const Theme = {
   background: "#fafafa",
   backgroundLight: "#ffffff",
   shadow: "0px 27.96px 37.28px rgba(50, 50, 71, 0.08)",
-  fonts: { small: "12px", medium: "16px", large: "24px" },
+  fonts: { small: "14px", medium: "18px", large: "24px" },
   headerHeight: "70px",
   footerHeight: "70px",
 };
