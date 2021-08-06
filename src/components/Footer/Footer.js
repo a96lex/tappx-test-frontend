@@ -8,7 +8,7 @@ export function Footer() {
         <div>Integration guides</div>
         <div>Contact</div>
         <div>Press</div>
-        <div>Work with us</div>
+        <div>Hire me</div>
       </div>
       <div style={{ justifyContent: "center" }}>
         <span>Developed with ❤️ by&nbsp;</span>
