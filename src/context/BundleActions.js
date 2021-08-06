@@ -51,7 +51,7 @@ function deleteBundle(dispatch) {
   return async function deleteBundleDispatch(id) {
     dispatch({ type: DELETE_BUNDLE_START });
     try {
-      await axios.delete(`${endpoint}`, "", id);
+      await axios.delete(`${endpoint}`, { data: { id } });
       dispatch({ type: DELETE_BUNDLE_SUCCESS });
       getBundles(dispatch)();
       unSelectBundle(dispatch)();
@@ -66,7 +66,7 @@ function updateBundle(dispatch) {
   return async function updateBundleDispatch(bundle) {
     dispatch({ type: DELETE_BUNDLE_START });
     try {
-      await axios.delete(`${endpoint}`, "", bundle);
+      await axios.put(`${endpoint}`, { data: bundle });
       dispatch({ type: DELETE_BUNDLE_SUCCESS });
       getBundles(dispatch)();
       unSelectBundle(dispatch)();
