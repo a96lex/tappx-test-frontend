@@ -23,7 +23,6 @@ export const DataRow = styled.div`
   border-radius: 3px;
   margin-bottom: 10px;
   padding: 5px;
-  cursor: pointer;
   background: ${Theme.background};
   div {
     width: ${(props) => (props.columns ? `${100 / props.columns}%` : "25%")};
@@ -32,9 +31,13 @@ export const DataRow = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  &:hover {
+  ${(props) =>
+    !props.emptyArray
+      ? `&:hover {
     background: ${Theme.secondaryLight};
-  }
+    cursor: pointer;
+  }`
+      : `justify-content:center; font-size: ${Theme.fonts.medium};padding: 40px`}
 `;
 
 export const Code = styled.div`
