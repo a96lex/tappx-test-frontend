@@ -1,10 +1,10 @@
 import React from "react";
-import { useBundleActions } from "../../context";
-import { helperData } from "../../utils";
+import { useBundleActions, useBundleState } from "../../context";
 import { DataHeader, DataRow } from "./Table.styled";
 
 export function Table() {
   const { selectBundle } = useBundleActions();
+  const { bundleList, getBundleLoading } = useBundleState();
   return (
     <>
       <DataHeader>
@@ -13,14 +13,22 @@ export function Table() {
         <div>bundle</div>
         <div>company</div>
       </DataHeader>
-      {helperData.map((b, i) => (
-        <DataRow onClick={() => selectBundle(b)} key={i}>
-          <div>{b.name}</div>
-          <div>{b.category}</div>
-          <div>{b.bundle}</div>
-          <div>{b.company}</div>
+      {bundleList.length > 0 ? (
+        bundleList.map((bundle, index) => (
+          <DataRow onClick={() => selectBundle(bundle)} key={index}>
+            <div>{bundle.username}</div>
+            <div>{bundle.category}</div>
+            <div>{bundle.bundle}</div>
+            <div>{bundle.company}</div>
+          </DataRow>
+        ))
+      ) : (
+        <DataRow columns={1} style={{ textAlign: "center" }} emptyArray>
+          {getBundleLoading
+            ? "Loading..."
+            : "There are no bundles to show. Create one!"}
         </DataRow>
-      ))}
+      )}
     </>
   );
 }

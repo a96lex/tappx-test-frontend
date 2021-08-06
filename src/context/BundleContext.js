@@ -8,6 +8,9 @@ import {
   CREATE_BUNDLE_START,
   CREATE_BUNDLE_SUCCESS,
   CREATE_BUNDLE_FAIL,
+  UPDATE_BUNDLE_START,
+  UPDATE_BUNDLE_SUCCESS,
+  UPDATE_BUNDLE_FAIL,
   DELETE_BUNDLE_START,
   DELETE_BUNDLE_SUCCESS,
   DELETE_BUNDLE_FAIL,
@@ -40,6 +43,16 @@ function bundleReducer(state, action) {
         createBundleLoading: false,
         bundleError: action.payload,
       };
+    case UPDATE_BUNDLE_START:
+      return { ...state, updateBundleLoading: true };
+    case UPDATE_BUNDLE_SUCCESS:
+      return { ...state, updateBundleLoading: false };
+    case UPDATE_BUNDLE_FAIL:
+      return {
+        ...state,
+        updateBundleLoading: false,
+        bundleError: action.payload,
+      };
     case DELETE_BUNDLE_START:
       return { ...state, deleteBundleLoading: true };
     case DELETE_BUNDLE_SUCCESS:
@@ -66,8 +79,9 @@ function bundleReducer(state, action) {
 const INITIAL_STATE = {
   getBundleLoading: false,
   createBundleLoading: false,
+  updateBundleLoading: false,
   deleteBundleLoading: false,
-  bundleList: null,
+  bundleList: [],
   selectedBundle: null,
   isCreation: false,
   bundleError: null,

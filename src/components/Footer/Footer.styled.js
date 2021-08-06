@@ -3,15 +3,20 @@ import { Theme } from "../../utils";
 
 export const StyledFooter = styled.div`
   background-color: ${Theme.body};
-  bottom: 0px;
   width: 100vw;
-  position: fixed;
+  height: ${Theme.footerHeight};
   display: flex;
   flex-wrap: auto;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
-  min-height: 10vh;
   div {
+    width: 100%;
+    display: flex;
+    flex-wrap: auto;
+    align-items: center;
+    justify-content: space-around;
     color: ${Theme.background};
   }
+  z-index: 0;
 `;

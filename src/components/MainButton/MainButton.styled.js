@@ -11,7 +11,7 @@ export const StyledButton = styled.button`
     props.secondary ? Theme.secondary : Theme.primary};
   height: fit-content;
   padding: ${(props) => (props.secondary ? "8px 15px" : "12px 30px")};
-  transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
   &:hover {
     ${(props) =>
       props.secondary

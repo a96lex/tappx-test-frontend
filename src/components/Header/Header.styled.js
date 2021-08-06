@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 70px;
+  height: ${Theme.headerHeight};
   background-color: ${Theme.backgroundLight};
   box-shadow: ${Theme.shadow};
 `;

@@ -1,16 +1,18 @@
 import styled from "styled-components";
 import { Theme } from "../../utils";
 
-const headerOffset = "70px";
-
 export const AppLayout = styled.div`
   width: 100vw;
-  min-height: calc(100vh - ${headerOffset});
+  min-height: calc(
+    100vh - ${Theme.headerHeight} - ${Theme.footerHeight} -
+      ${Theme.footerHeight}
+  );
   background-color: ${Theme.background};
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: ${headerOffset};
+  padding-top: ${Theme.headerHeight};
+  padding-bottom: ${Theme.footerHeight};
 `;
 
 export const MainCard = styled.div`

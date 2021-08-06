@@ -29,6 +29,7 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  min-width: 500px;
   background: ${Theme.backgroundLight};
   border-radius: 8px;
   box-shadow: ${Theme.shadow}

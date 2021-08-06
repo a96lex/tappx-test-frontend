@@ -6,6 +6,9 @@ import {
   CREATE_BUNDLE_START,
   CREATE_BUNDLE_SUCCESS,
   CREATE_BUNDLE_FAIL,
+  UPDATE_BUNDLE_START,
+  UPDATE_BUNDLE_SUCCESS,
+  UPDATE_BUNDLE_FAIL,
   DELETE_BUNDLE_START,
   DELETE_BUNDLE_SUCCESS,
   DELETE_BUNDLE_FAIL,
@@ -13,15 +16,14 @@ import {
   UNSELECT_BUNDLE,
 } from "./Types";
 
-const endpoint = "https://localhost:8080/bundles";
+const endpoint = "http://localhost:8000/";
 
 function getBundles(dispatch) {
   return async function getBundlesDispatch() {
     dispatch({ type: GET_ALL_BUNDLES_START });
     try {
-      const data = await axios.get(`${endpoint}/list`, "");
-      const { bundles } = data;
-      dispatch({ type: GET_ALL_BUNDLES_SUCCESS, payload: bundles });
+      const { data } = await axios.get(`${endpoint}`, "");
+      dispatch({ type: GET_ALL_BUNDLES_SUCCESS, payload: data });
     } catch (e) {
       console.log(e);
       dispatch({ type: GET_ALL_BUNDLES_FAIL });
@@ -33,8 +35,12 @@ function createBundle(dispatch) {
   return async function createBundleDispatch(bundle) {
     dispatch({ type: CREATE_BUNDLE_START });
     try {
-      await axios.post(`${endpoint}/create`, "", bundle);
+      await axios.post(`${endpoint}`, bundle, {
+        headers: { "Content-Type": "application/json" },
+      });
       dispatch({ type: CREATE_BUNDLE_SUCCESS });
+      getBundles(dispatch)();
+      unSelectBundle(dispatch)();
     } catch (e) {
       console.log(e);
       dispatch({ type: CREATE_BUNDLE_FAIL });
@@ -43,14 +49,30 @@ function createBundle(dispatch) {
 }
 
 function deleteBundle(dispatch) {
-  return async function deleteBundleDispatch(bundle) {
+  return async function deleteBundleDispatch(id) {
     dispatch({ type: DELETE_BUNDLE_START });
     try {
-      await axios.post(`${endpoint}/delete`, "", bundle);
+      await axios.delete(`${endpoint}`, { data: { id } });
       dispatch({ type: DELETE_BUNDLE_SUCCESS });
+      getBundles(dispatch)();
+      unSelectBundle(dispatch)();
     } catch (e) {
       console.log(e);
       dispatch({ type: DELETE_BUNDLE_FAIL });
+    }
+  };
+}
+
+function updateBundle(dispatch) {
+  return async function updateBundleDispatch(bundle) {
+    dispatch({ type: UPDATE_BUNDLE_START });
+    try {
+      await axios.put(`${endpoint}`, bundle);
+      dispatch({ type: UPDATE_BUNDLE_SUCCESS });
+      getBundles(dispatch)();
+    } catch (e) {
+      console.log(e);
+      dispatch({ type: UPDATE_BUNDLE_FAIL });
     }
   };
 }
@@ -82,6 +104,7 @@ export const BundleActions = {
   getBundles,
   createBundle,
   deleteBundle,
+  updateBundle,
   selectBundle,
   unSelectBundle,
 };
