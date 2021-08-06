@@ -67,7 +67,7 @@ const INITIAL_STATE = {
   getBundleLoading: false,
   createBundleLoading: false,
   deleteBundleLoading: false,
-  bundleList: null,
+  bundleList: [],
   selectedBundle: null,
   isCreation: false,
   bundleError: null,
