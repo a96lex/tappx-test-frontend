@@ -39,16 +39,3 @@ export const DataRow = styled.div`
   }`
       : `justify-content:center; font-size: ${Theme.fonts.medium};padding: 40px`}
 `;
-
-export const Code = styled.div`
-  width: 500px;
-  background: #f5f6fa;
-  border-radius: 5px;
-  padding: 12px;
-  border-bottom: 3px solid #dfdfdf;
-  div {
-    font-family: Ubuntu Mono;
-    text-align: left;
-    word-break: break-all;
-  }
-`;
