@@ -17,7 +17,7 @@ export function Table() {
         bundleList.map((bundle, index) => (
           <DataRow onClick={() => selectBundle(bundle)} key={index}>
             <div>{bundle.username}</div>
-            <div>{bundle.category}</div>
+            <div style={{ textTransform: "capitalize" }}>{bundle.category}</div>
             <div>{bundle.bundle}</div>
             <div>{bundle.company}</div>
           </DataRow>
