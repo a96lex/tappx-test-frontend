@@ -4,7 +4,7 @@ import { DataHeader, DataRow } from "./Table.styled";
 
 export function Table() {
   const { selectBundle } = useBundleActions();
-  const { bundleList } = useBundleState();
+  const { bundleList, getBundleLoading } = useBundleState();
 
   return (
     <>
@@ -14,14 +14,22 @@ export function Table() {
         <div>bundle</div>
         <div>company</div>
       </DataHeader>
-      {bundleList.map((bundle, index) => (
-        <DataRow onClick={() => selectBundle(bundle)} key={index}>
-          <div>{bundle.name}</div>
-          <div>{bundle.category}</div>
-          <div>{bundle.bundle}</div>
-          <div>{bundle.company}</div>
+      {bundleList.length > 0 ? (
+        bundleList.map((bundle, index) => (
+          <DataRow onClick={() => selectBundle(bundle)} key={index}>
+            <div>{bundle.name}</div>
+            <div>{bundle.category}</div>
+            <div>{bundle.bundle}</div>
+            <div>{bundle.company}</div>
+          </DataRow>
+        ))
+      ) : (
+        <DataRow columns={1} style={{ textAlign: "center" }} emptyArray>
+          {getBundleLoading
+            ? "Loading..."
+            : "There are no bundles to show. Create one!"}
         </DataRow>
-      ))}
+      )}
     </>
   );
 }
