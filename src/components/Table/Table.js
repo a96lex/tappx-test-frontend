@@ -17,7 +17,7 @@ export function Table() {
       {bundleList.length > 0 ? (
         bundleList.map((bundle, index) => (
           <DataRow onClick={() => selectBundle(bundle)} key={index}>
-            <div>{bundle.name}</div>
+            <div>{bundle.username}</div>
             <div>{bundle.category}</div>
             <div>{bundle.bundle}</div>
             <div>{bundle.company}</div>
