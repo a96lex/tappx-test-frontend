@@ -14,6 +14,7 @@ export function Footer() {
         <span>Developed with ❤️ by&nbsp;</span>
         <a
           href="https://github.com/a96lex"
+          rel="noreferrer"
           target="_blank"
           style={{ color: "white" }}
         >

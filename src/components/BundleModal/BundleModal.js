@@ -35,6 +35,7 @@ export function BundleModal() {
       setActive(selectedBundle.active);
       setCategory(selectedBundle.category);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedBundle]);
 
   const checkErrors = () => {
