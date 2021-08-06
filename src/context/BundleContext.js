@@ -8,6 +8,9 @@ import {
   CREATE_BUNDLE_START,
   CREATE_BUNDLE_SUCCESS,
   CREATE_BUNDLE_FAIL,
+  UPDATE_BUNDLE_START,
+  UPDATE_BUNDLE_SUCCESS,
+  UPDATE_BUNDLE_FAIL,
   DELETE_BUNDLE_START,
   DELETE_BUNDLE_SUCCESS,
   DELETE_BUNDLE_FAIL,
@@ -19,6 +22,7 @@ const BundleStateContext = React.createContext();
 const BundleDispatchContext = React.createContext();
 
 function bundleReducer(state, action) {
+  console.log(action.type);
   switch (action.type) {
     case GET_ALL_BUNDLES_START:
       return { ...state, getBundleLoading: true };
@@ -38,6 +42,16 @@ function bundleReducer(state, action) {
       return {
         ...state,
         createBundleLoading: false,
+        bundleError: action.payload,
+      };
+    case UPDATE_BUNDLE_START:
+      return { ...state, updateBundleLoading: true };
+    case UPDATE_BUNDLE_SUCCESS:
+      return { ...state, updateBundleLoading: false };
+    case UPDATE_BUNDLE_FAIL:
+      return {
+        ...state,
+        updateBundleLoading: false,
         bundleError: action.payload,
       };
     case DELETE_BUNDLE_START:
@@ -66,6 +80,7 @@ function bundleReducer(state, action) {
 const INITIAL_STATE = {
   getBundleLoading: false,
   createBundleLoading: false,
+  updateBundleLoading: false,
   deleteBundleLoading: false,
   bundleList: [],
   selectedBundle: null,

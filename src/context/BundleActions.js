@@ -6,6 +6,9 @@ import {
   CREATE_BUNDLE_START,
   CREATE_BUNDLE_SUCCESS,
   CREATE_BUNDLE_FAIL,
+  UPDATE_BUNDLE_START,
+  UPDATE_BUNDLE_SUCCESS,
+  UPDATE_BUNDLE_FAIL,
   DELETE_BUNDLE_START,
   DELETE_BUNDLE_SUCCESS,
   DELETE_BUNDLE_FAIL,
@@ -64,15 +67,14 @@ function deleteBundle(dispatch) {
 
 function updateBundle(dispatch) {
   return async function updateBundleDispatch(bundle) {
-    dispatch({ type: DELETE_BUNDLE_START });
+    dispatch({ type: UPDATE_BUNDLE_START });
     try {
-      await axios.put(`${endpoint}`, { data: bundle });
-      dispatch({ type: DELETE_BUNDLE_SUCCESS });
+      await axios.put(`${endpoint}`, bundle);
+      dispatch({ type: UPDATE_BUNDLE_SUCCESS });
       getBundles(dispatch)();
-      unSelectBundle(dispatch)();
     } catch (e) {
       console.log(e);
-      dispatch({ type: DELETE_BUNDLE_FAIL });
+      dispatch({ type: UPDATE_BUNDLE_FAIL });
     }
   };
 }
