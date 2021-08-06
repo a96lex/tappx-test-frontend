@@ -10,8 +10,9 @@ export const StyledFooter = styled.div`
   flex-wrap: auto;
   align-items: center;
   justify-content: space-around;
-  min-height: 10vh;
+  height: ${Theme.footerHeight};
   div {
     color: ${Theme.background};
   }
+  z-index: 1000;
 `;
