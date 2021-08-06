@@ -70,6 +70,16 @@ export function BundleModal() {
     setBundleError("");
     setCompanyError("");
     unSelectBundle();
+    resetModal();
+  };
+
+  const resetModal = () => {
+    setUsername("");
+    setEmail("");
+    setBundle("");
+    setCompany("");
+    setActive(0);
+    setCategory(categoryOptions[0]);
   };
 
   const handleCreate = () => {
@@ -83,13 +93,8 @@ export function BundleModal() {
         active,
         category,
       });
-      setUsername("");
-      setEmail("");
-      setBundle("");
-      setCompany("");
-      setActive(0);
-      setCategory(categoryOptions[0]);
     }
+    resetModal();
   };
 
   const handleUpdate = () => {
@@ -110,6 +115,7 @@ export function BundleModal() {
   const handleDelete = () => {
     deleteBundle(selectedBundle.id);
     setShowDelete(false);
+    resetModal();
   };
 
   return (
