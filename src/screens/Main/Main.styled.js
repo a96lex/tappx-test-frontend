@@ -3,14 +3,16 @@ import { Theme } from "../../utils";
 
 export const AppLayout = styled.div`
   width: 100vw;
-  min-height: calc(100vh - ${Theme.headerHeight} - ${Theme.footerHeight});
+  min-height: calc(
+    100vh - ${Theme.headerHeight} - ${Theme.footerHeight} -
+      ${Theme.footerHeight}
+  );
   background-color: ${Theme.background};
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: ${Theme.headerHeight};
   padding-bottom: ${Theme.footerHeight};
-  overflow-y: scroll;
 `;
 
 export const MainCard = styled.div`

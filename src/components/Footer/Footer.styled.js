@@ -3,9 +3,7 @@ import { Theme } from "../../utils";
 
 export const StyledFooter = styled.div`
   background-color: ${Theme.body};
-  bottom: 0px;
   width: 100vw;
-  position: fixed;
   display: flex;
   flex-wrap: auto;
   align-items: center;
@@ -14,5 +12,5 @@ export const StyledFooter = styled.div`
   div {
     color: ${Theme.background};
   }
-  z-index: 1000;
+  z-index: 0;
 `;
