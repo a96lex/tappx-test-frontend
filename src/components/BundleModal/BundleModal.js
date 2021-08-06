@@ -14,12 +14,6 @@ export function BundleModal() {
   const [company, setCompany] = useState("");
   const [active, setActive] = useState(0);
   const [category, setCategory] = useState(categoryOptions[0]);
-  // const [name, setName] = useState("alex");
-  // const [email, setEmail] = useState("alex@loves.cris");
-  // const [bundle, setBundle] = useState("alex.loves.cris");
-  // const [company, setCompany] = useState("alex");
-  // const [active, setActive] = useState(0);
-  // const [category, setCategory] = useState(categoryOptions[0]);
 
   const [nameError, setNameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
@@ -30,11 +24,6 @@ export function BundleModal() {
 
   const { unSelectBundle, createBundle, deleteBundle } = useBundleActions();
   const { selectedBundle, isCreation } = useBundleState();
-
-  const handleBundleDelete = () => {
-    deleteBundle(selectedBundle.id);
-    setShowDelete(false);
-  };
 
   useEffect(() => {
     if (selectedBundle && !isCreation) {
@@ -47,18 +36,13 @@ export function BundleModal() {
     }
   }, [selectedBundle]);
 
-  const handleClose = () => {
-    unSelectBundle();
-    setShowDelete(false);
-  };
-
   const checkErrors = () => {
     let nameCheck = "";
     let emailCheck = "";
     let bundleCheck = "";
     let companyCheck = "";
 
-    if (name == "") {
+    if (name === "") {
       nameCheck = "Please enter a name";
     }
     if (!emailRegex.test(email)) {
@@ -67,7 +51,7 @@ export function BundleModal() {
     if (!bundleRegex.test(bundle)) {
       bundleCheck = "Please check your bundle";
     }
-    if (company == "") {
+    if (company === "") {
       companyCheck = "Please enter a company";
     }
     setNameError(nameCheck);
@@ -80,8 +64,7 @@ export function BundleModal() {
 
   const handleCreate = () => {
     const error = checkErrors();
-    console.log({ error, nameError });
-    if (!checkErrors()) {
+    if (!error) {
       createBundle({
         name,
         email,
@@ -99,8 +82,28 @@ export function BundleModal() {
     }
   };
 
+  const handleUpdate = () => {
+    const error = checkErrors();
+    if (!error) {
+      createBundle({
+        id: selectedBundle.id,
+        name,
+        email,
+        bundle,
+        company,
+        active,
+        category,
+      });
+    }
+  };
+
+  const handleDelete = () => {
+    deleteBundle(selectedBundle.id);
+    setShowDelete(false);
+  };
+
   return (
-    <Modal close={handleClose} show={selectedBundle}>
+    <Modal close={unSelectBundle} show={selectedBundle}>
       <h2>{isCreation ? "Introduce bundle data" : "Bundle details"}</h2>
       <BundleInputText
         label="Name:"
@@ -157,30 +160,34 @@ export function BundleModal() {
         }}
       >
         <MainButton
-          secondary={!isCreation}
-          onClick={() =>
-            isCreation ? handleCreate() : setShowDelete(!showDelete)
-          }
+          onClick={() => (isCreation ? handleCreate() : handleUpdate())}
         >
-          {isCreation ? "CREATE" : showDelete ? "CANCEL" : "DELETE"}
+          {isCreation ? "CREATE" : "UPDATE"}
         </MainButton>
-        <MainButton
-          onClick={() => handleBundleDelete()}
-          disabled={!showDelete}
-          style={
-            showDelete
-              ? { minWidth: 0, marginLeft: 10 }
-              : {
-                  width: 0,
-                  minWidth: 0,
-                  paddingLeft: 0,
-                  paddingRight: 0,
-                  whiteSpace: "nowrap",
-                }
-          }
-        >
-          CONFIRM ELIMINATION
-        </MainButton>
+        {!isCreation && (
+          <>
+            <MainButton secondary onClick={() => setShowDelete(!showDelete)}>
+              {showDelete ? "CANCEL" : "DELETE"}
+            </MainButton>
+            <MainButton
+              onClick={() => handleDelete()}
+              disabled={!showDelete}
+              style={
+                showDelete
+                  ? { minWidth: 0, marginLeft: 10 }
+                  : {
+                      width: 0,
+                      minWidth: 0,
+                      paddingLeft: 0,
+                      paddingRight: 0,
+                      whiteSpace: "nowrap",
+                    }
+              }
+            >
+              CONFIRM ELIMINATION
+            </MainButton>
+          </>
+        )}
       </div>
     </Modal>
   );
